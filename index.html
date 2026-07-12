@@ -24,7 +24,11 @@
             <h1>
                 <a :href="link">{{product}}</a>
             </h1>
-            <h4>{{productDescription}}</h4>
+            <h2 v-if="onSale">(On sales!!!!!!!!!)</h2>
+            <h3>{{productDescription}}</h3>
+            <p v-if="inventory > 10">In stock</p>
+            <p v-else-if="inventory <= 10 && inventory > 0">Almost out of stock</p>
+            <p v-else>Out of stock</p>
         </div>
     </div>
 
