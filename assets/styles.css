@@ -180,3 +180,8 @@ ul {
     width: 90%;
   }
 }
+
+.sizeList {
+  display: flex;
+  gap: 10px;
+}
