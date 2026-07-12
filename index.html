@@ -12,8 +12,20 @@
 
 <body>
     <div id="app">
-        <h1>{{product}}</h1>
-        <h3>{{productDescription}}</h3>
+        <div class="nav-bar"></div>
+        <div class="product-display">
+            <div class="product-container">
+                <div class="product-image">
+                    <img :src="image">
+                </div>
+            </div>
+        </div>
+        <div class="product-info">
+            <h1>
+                <a :href="link">{{product}}</a>
+            </h1>
+            <h4>{{productDescription}}</h4>
+        </div>
     </div>
 
     <!-- Import Js -->
