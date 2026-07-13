@@ -203,3 +203,10 @@ ul {
   filter: grayscale(100%);
   opacity: 50%;
 }
+
+.recommend-options {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 10px 0;
+}
