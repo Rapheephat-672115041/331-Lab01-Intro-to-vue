@@ -30,8 +30,10 @@ const productDisplay = {
                 <li v-for="size in sizes">{{size}}</li>
             </ul>
             <button class="button" :disabled='!inStock' @click="addToCart" :class="{disabledButton: !inStock}">Add to cart</button>
+            <button class="button" :disabled="!inStock || !onSale" @click="removeFromCart" :class="{disabledButton: !inStock || !onSale}" >Remove from Cart</button>
         </div>
         `,
+        emits: ['add-to-cart', 'remove-from-cart'],
         props: {
             premium: Boolean
         },
@@ -62,6 +64,10 @@ const productDisplay = {
 
     function addToCart() {
       emit('add-to-cart', variants.value[selectedVariant.value].id)
+    }
+
+    function removeFromCart() {
+      emit('remove-from-cart', variants.value[selectedVariant.value].id)
     }
 
     const title = computed(() => {
@@ -107,6 +113,7 @@ const productDisplay = {
       details,
       variants,
       addToCart,
+      removeFromCart,
       sizes,
       updateVariant,
       displaySale,
