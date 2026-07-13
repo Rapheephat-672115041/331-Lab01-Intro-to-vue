@@ -30,13 +30,12 @@ const productDisplay = {
                 <li v-for="size in sizes">{{size}}</li>
             </ul>
             <button class="button" :disabled='!inStock' @click="addToCart" :class="{disabledButton: !inStock}">Add to cart</button>
-            <button class="button" @click="toggleSale">Toggle Sale</button>
         </div>
         `,
         props: {
             premium: Boolean
         },
-  setup(props) {
+  setup(props, {emit}) {
     const product = ref("Socks");
     const brand = ref("SE 331");
     const productDescription = ref("You wear it when wearing studs");
@@ -55,14 +54,14 @@ const productDisplay = {
         id: 2235,
         color: "blue",
         image: "./assets/images/socks_blue.jpg",
-        quantity: 0,
+        quantity: 10,
       },
     ]);
     const selectedVariant = ref(0);
     const sizes = ref(["S", "M", "L"]);
 
     function addToCart() {
-      cart.value += 1;
+      emit('add-to-cart', variants.value[selectedVariant.value].id)
     }
 
     const title = computed(() => {
@@ -89,10 +88,6 @@ const productDisplay = {
       return "";
     });
 
-    function toggleSale() {
-      onSale.value = !onSale.value;
-    }
-
     const shipping = computed(() => {
         if (props.premium) {
             return 'Free'
@@ -115,7 +110,6 @@ const productDisplay = {
       sizes,
       updateVariant,
       displaySale,
-      toggleSale,
       shipping
     };
   },
